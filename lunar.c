@@ -169,7 +169,7 @@ PHP_FUNCTION(date_to_lunar)
     lunar_month = i;
     lunar_day = offset + 1;
     char lunar_output[100] = {0};
-    int len = sprintf(
+    sprintf(
         lunar_output,
 
         "%i-%i-%i-%s%s-%s-%s%s-%s%s-%s%s",
@@ -192,9 +192,8 @@ PHP_FUNCTION(date_to_lunar)
         lunar_tiangan_names[day_cyl%10],
         lunar_dizhi_names[day_cyl%12]
     );
-    // char* ret = lunar_output;
-    // #define RETVAL_STRINGL(s, l, duplicate)     ZVAL_STRINGL(return_value, s, l, duplicate)
-    RETVAL_STRINGL(lunar_output, len, 1); // 1 
+    char* ret = lunar_output;
+    RETVAL_STRINGL(lunar_output, strlen(ret));
 }
 
 PHP_MINIT_FUNCTION(lunar)
